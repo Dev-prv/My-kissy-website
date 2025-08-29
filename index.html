@@ -103,8 +103,17 @@ video { width:60%; max-width:500px; border-radius:20px; box-shadow:0 4px 15px rg
 </head>
 <body>
 
+<!-- Stage 0: Intro Message -->
+<div id="stage0" class="fade">
+<h2>🎁 A Small Gift from Your Boo-Boo 🎁</h2>
+<p>I hope this helps you reduce your anger 😘.<br>
+I also hope you will give me so many sweet gifts, lots of love, effort, and care 💖.<br>
+I expect so much love and happiness from you! 💕</p>
+<button onclick="goStage(1)">Hit this button for spicy pictures of your Boo-Boo 😏</button>
+</div>
+
 <!-- Stage 1: Pictures -->
-<div id="stage1" class="fade">
+<div id="stage1" class="hidden fade">
 <h2>💖 For You 💖</h2>
 <img src="pic1.jpg" alt="">
 <img src="pic2.jpg" alt="">
@@ -175,7 +184,7 @@ I love you endlessly, honey. 💖</p>
 <h2>🎮 Catch the Hearts! 🎮</h2>
 <canvas id="gameCanvas" width="500" height="400"></canvas>
 <div id="scoreDisplay">Score: 0</div>
-<button onclick="goStage(1)">Restart 💖</button>
+<button onclick="goStage(0)">Restart 💖</button>
 </div>
 
 <!-- Background Piano Music -->
