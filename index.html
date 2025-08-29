@@ -1,66 +1,100 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>For My Love 💖</title>
 <style>
-body{
-  margin:0;
-  font-family:'Segoe Script', cursive;
-  overflow-x:hidden;
-  background: linear-gradient(120deg,#ffe0f0,#fff0f6);
-  background-size: 400% 400%;
-  animation: gradientAnim 20s ease infinite;
+body {
+  margin: 0;
+  font-family: 'Segoe Script', cursive;
+  background: #fff0f6;
+  color: #d63384;
+  text-align: center;
+  overflow-x: hidden;
 }
-@keyframes gradientAnim{
-  0%{background-position:0% 50%;}
-  50%{background-position:100% 50%;}
-  100%{background-position:0% 50%;}
+.hidden { display: none; }
+.fade { opacity:0; animation: fadeIn 1s forwards; }
+@keyframes fadeIn { from{opacity:0} to{opacity:1;} }
+
+img { width: 180px; margin: 10px; border-radius: 20px; box-shadow:0 4px 15px rgba(0,0,0,0.2); transition: transform 0.3s ease; }
+img:hover { transform: scale(1.05); }
+
+button { padding: 12px 24px; margin: 20px; font-size: 18px; border:none; border-radius:25px; background:#ff4d6d; color:white; cursor:pointer; transition:0.3s; }
+button:hover { background:#e03159; transform: scale(1.05); }
+
+.gift { font-size:80px; cursor:pointer; margin:30px; animation:shake 1s infinite alternate; }
+@keyframes shake {0% {transform:rotate(-5deg);} 100%{transform:rotate(5deg);} }
+
+video { width:60%; max-width:500px; border-radius:20px; box-shadow:0 4px 15px rgba(0,0,0,0.3); }
+
+.heart { position: fixed; bottom:-50px; color:#ff4d6d; font-size:24px; animation:float 5s linear infinite;}
+@keyframes float { from{transform:translateY(0);opacity:1;} to{transform:translateY(-100vh);opacity:0;} }
+
+.easter-egg { position: fixed; bottom:10px; right:10px; font-size:25px; cursor:pointer; opacity:0.7; transition:0.2s;}
+.easter-egg:hover { transform:scale(1.2); }
+
+/* Letter Styles */
+.letter-wrapper {
+  position: relative;
+  width: 80%;
+  max-width: 700px;
+  height: 500px;
+  margin: 20px auto;
+  perspective: 1000px;
 }
-.hidden{display:none;}
-.fade{opacity:0;animation:fadeIn 1s forwards;}
-@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
-img{width:180px;margin:10px;border-radius:20px;box-shadow:0 4px 15px rgba(0,0,0,0.2);transition:transform 0.3s;}
-img:hover{transform:scale(1.05);}
-button{padding:12px 24px;margin:20px;font-size:18px;border:none;border-radius:25px;background:#ff4d6d;color:white;cursor:pointer;transition:0.3s;}
-button:hover{background:#e03159;transform:scale(1.05);}
-.gift{font-size:80px;cursor:pointer;margin:30px;animation:shake 1s infinite alternate;}
-@keyframes shake{0%{transform:rotate(-5deg);}100%{transform:rotate(5deg);}}
-video{width:60%;max-width:500px;border-radius:20px;box-shadow:0 4px 15px rgba(0,0,0,0.3);}
-.emoji{position:fixed;font-size:24px;animation:float 5s linear infinite;pointer-events:none;}
-@keyframes float{from{transform:translateY(0);opacity:1;}to{transform:translateY(-100vh);opacity:0;}}
-.easter-egg{position:fixed;bottom:10px;right:10px;font-size:25px;cursor:pointer;opacity:0.7;transition:0.2s;}
-.easter-egg:hover{transform:scale(1.2);}
-.letter-wrapper{position:relative;width:80%;max-width:700px;height:500px;margin:20px auto;perspective:1000px;}
-.ribbon{position:absolute;top:0;left:50%;transform:translateX(-50%);font-size:50px;cursor:pointer;z-index:10;transition:top 0.5s ease,opacity 0.5s ease;}
-.letter-content{background:#fff8e7;width:100%;height:100%;border-radius:15px;box-shadow:0 4px 15px rgba(0,0,0,0.2);padding:30px;font-family:'Handlee',cursive;font-size:22px;color:#333;overflow:hidden;transform-origin:top;transform:scaleY(0);transition:transform 0.5s ease;touch-action:none;}
-.letter-content.open{transform:scaleY(1);overflow-y:auto;}
-#stageGame{height:500px;}
-#gameCanvas{background:#ffe4f1;border-radius:15px;margin:20px auto;display:block;}
-.sparkle{position:fixed;width:5px;height:5px;border-radius:50%;background:gold;pointer-events:none;animation:fall 3s linear forwards;}
-@keyframes fall{0%{opacity:1;transform:translateY(0);}100%{opacity:0;transform:translateY(-100vh) rotate(360deg);}}
+.ribbon {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 50px;
+  cursor: pointer;
+  z-index: 10;
+  transition: top 0.5s ease, opacity 0.5s ease;
+}
+.letter-content {
+  background: #fff8e7;
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  box-shadow:0 4px 15px rgba(0,0,0,0.2);
+  padding: 30px;
+  font-family: 'Handlee', cursive;
+  font-size: 22px;
+  color: #333;
+  overflow: hidden;
+  transform-origin: top;
+  transform: scaleY(0);
+  transition: transform 0.5s ease;
+  touch-action: none;
+}
+.letter-content.open { transform: scaleY(1); overflow-y:auto; }
+
+/* Game Styles */
+#stageGame { height: 500px; }
+#gameCanvas { background: #ffe4f1; border-radius: 15px; margin: 20px auto; display:block; }
 </style>
 </head>
 <body>
 
-<!-- Stage 1 -->
+<!-- Stage 1: Pictures -->
 <div id="stage1" class="fade">
 <h2>💖 For You 💖</h2>
-<img src="pic1.jpg">
-<img src="pic2.jpg">
-<img src="pic3.jpg">
-<img src="pic4.jpg">
+<img src="pic1.jpg" alt="">
+<img src="pic2.jpg" alt="">
+<img src="pic3.jpg" alt="">
+<img src="pic4.jpg" alt="">
 <br>
-<button onclick="startMusic();goStage(2)">From your Bubu 💌</button>
+<button onclick="goStage(2)">From your Bubu 💌</button>
 </div>
 
-<!-- Stage 2 Gift -->
+<!-- Stage 2: Gift Box -->
 <div id="stage2" class="hidden fade">
 <h2>Tap the gift many times 🎁</h2>
 <div class="gift" onclick="openGift()">🎁</div>
 </div>
 
-<!-- Stage 3 Video -->
+<!-- Stage 3: Video -->
 <div id="stage3" class="hidden fade">
 <video id="kissVideo" controls autoplay>
   <source src="kissy.mp4" type="video/mp4">
@@ -69,7 +103,7 @@ video{width:60%;max-width:500px;border-radius:20px;box-shadow:0 4px 15px rgba(0,
 <button onclick="goStage(4)">More Kisses 😘</button>
 </div>
 
-<!-- Stage 4 Kisses -->
+<!-- Stage 4: Kisses Rain -->
 <div id="stage4" class="hidden fade">
 <h2>Here come the kisses 😘💋</h2>
 <button onclick="rainKisses()">Give More Kisses 💋</button>
@@ -77,14 +111,16 @@ video{width:60%;max-width:500px;border-radius:20px;box-shadow:0 4px 15px rgba(0,
 <button onclick="goStage(5)">Next Surprise 🌹</button>
 </div>
 
-<!-- Stage 5 Glowing note -->
+<!-- Stage 5: Glowing Note -->
 <div id="stage5" class="hidden fade">
 <h2>For My Love 💕</h2>
-<p>You are my calm, my happiness, my everything. Your smile, your love, your beauty—makes me happiest. 💖</p>
+<p>You are my calm, my happiness, my everything.  
+Your beauty, your smile, your love — they make me the happiest person alive.  
+I love you endlessly, honey. 💖</p>
 <button onclick="goStage(6)">Read My Letter 📜</button>
 </div>
 
-<!-- Stage 6 Letter -->
+<!-- Stage 6: Final Letter -->
 <div id="stage6" class="hidden fade">
 <h2>📜 My Love Letter</h2>
 <div class="letter-wrapper">
@@ -92,104 +128,146 @@ video{width:60%;max-width:500px;border-radius:20px;box-shadow:0 4px 15px rgba(0,
   <div class="letter-content" id="letter">
   My sweetest love,  
 
-  Every moment with you fills my heart with joy. Your laughter, your smile, your eyes—the most beautiful sight.  
+  Every moment with you fills my heart with happiness. From the first time I saw your smile, I knew my life had changed forever. You make every day brighter, every moment sweeter.  
 
-  I promise to love you endlessly and be with you through every adventure.  
+  Your laughter is my favorite melody, your eyes the most beautiful sight. I cherish your kindness, your patience, and your endless love.  
 
-  Forever yours, 💖 Your Bubu
+  I promise to always stand by your side, through every challenge, every joy, every sunrise and sunset. You are my heart, my soul, my everything.  
 
-  💌 You are my world. I dream of us traveling together, sharing laughter, adventures, cozy nights, and endless kisses. 💖
+  May this letter remind you how deeply and endlessly I love you. I dream of our future together, of our adventures, our cozy nights, our laughter, our shared dreams.  
+
+  Forever yours,  
+  💖 Your Bubu
   </div>
 </div>
 <br>
 <button onclick="goStage('Game')">Play a Fun Game 🎮</button>
 </div>
 
-<!-- Stage 7 Game -->
+<!-- Stage 7: Game -->
 <div id="stageGame" class="hidden fade">
 <h2>🎮 Catch the Hearts! 🎮</h2>
 <canvas id="gameCanvas" width="500" height="400"></canvas>
-<p>Move your mouse (or finger) to catch hearts!</p>
+<p>Move your mouse (or finger) to catch the hearts!</p>
 <button onclick="goStage(1)">Restart 💖</button>
 </div>
 
-<audio id="bgMusic" loop>
+<!-- Background Piano Music -->
+<audio id="bgMusic" autoplay loop>
   <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_15c8a8a5c3.mp3?filename=romantic-piano-112199.mp3" type="audio/mp3">
 </audio>
 
+<!-- Easter Egg -->
 <div class="easter-egg" onclick="bonus()">❤️</div>
 
 <script>
-let giftTaps=0, musicStarted=false;
+let giftTaps=0;
 const bgMusic=document.getElementById('bgMusic');
-
-function startMusic(){if(!musicStarted){bgMusic.play();musicStarted=true;}}
+bgMusic.volume=0.5;
 
 function goStage(n){
-  document.querySelectorAll("div[id^='stage']").forEach(d=>d.classList.add('hidden'));
-  document.getElementById('stage'+n).classList.remove('hidden');
-  if(n==3) startFloatingEmojis();
-  if(n==6) startLetterHearts();
-  if(n=='Game') startGame();
+  document.querySelectorAll("div[id^='stage']").forEach(d=>d.classList.add("hidden"));
+  document.getElementById('stage'+n).classList.remove("hidden");
 }
 
-function openGift(){giftTaps++;if(giftTaps>=5) goStage(3);}
-function rainKisses(){for(let i=0;i<20;i++){createEmoji('💋');}}
-function bonus(){alert("💖 I love you my D-I-V-A, Ummahh 😘");}
-
-function createEmoji(symbol,delay=0){
-  setTimeout(()=>{
-    let e=document.createElement('div');
-    e.className='emoji';
-    e.style.left=Math.random()*100+'vw';
-    e.style.fontSize=(20+Math.random()*20)+'px';
-    e.innerHTML=symbol;
-    document.body.appendChild(e);
-    setTimeout(()=>e.remove(),8000);
-  },delay);
-}
-function startFloatingEmojis(){for(let i=0;i<30;i++){createEmoji('💖',Math.random()*5000); createSparkle(Math.random()*5000);}}
-function startLetterHearts(){setInterval(()=>{createEmoji('💖');createSparkle();},700);}
-function createSparkle(delay=0){
-  setTimeout(()=>{
-    let s=document.createElement('div');
-    s.className='sparkle';
-    s.style.left=Math.random()*100+'vw';
-    document.body.appendChild(s);
-    setTimeout(()=>s.remove(),3000);
-  },delay);
+function openGift(){
+  giftTaps++;
+  if(giftTaps>=5) goStage(3);
 }
 
-// Letter scroll
+function rainKisses(){
+  for(let i=0;i<15;i++){
+    let heart=document.createElement("div");
+    heart.className="heart";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.animationDuration=(3+Math.random()*2)+"s";
+    heart.innerHTML="💋";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),5000);
+  }
+}
+
+function bonus(){
+  alert("💖 I love you my D-I-V-A, Ummahh 😘");
+}
+
+// Ribbon & unrolling letter
 function removeRibbon(){
-  const ribbon=document.getElementById('ribbon'); ribbon.style.top='-100px'; ribbon.style.opacity='0';
-  document.getElementById('letter').classList.add('open');
+  const ribbon=document.getElementById('ribbon');
+  ribbon.style.top='-100px';
+  ribbon.style.opacity='0';
+  const letter=document.getElementById('letter');
+  letter.classList.add('open');
 }
 
+// Drag to scroll letter
 const letter=document.getElementById('letter');
-let isDragging=false, startY=0, scrollStart=0;
-letter.addEventListener('pointerdown',e=>{isDragging=true; startY=e.clientY||e.touches[0].clientY; scrollStart=letter.scrollTop; letter.setPointerCapture(e.pointerId);});
-letter.addEventListener('pointermove',e=>{if(!isDragging)return; const y=(e.clientY||e.touches[0].clientY); letter.scrollTop=scrollStart-(y-startY);});
-letter.addEventListener('pointerup',e=>{isDragging=false;letter.releasePointerCapture(e.pointerId);});
+let isDragging=false;
+let startY, scrollStart;
+letter.addEventListener('pointerdown', e=>{
+  isDragging=true;
+  startY=e.clientY || e.touches[0].clientY;
+  scrollStart=letter.scrollTop;
+  letter.setPointerCapture(e.pointerId);
+});
+letter.addEventListener('pointermove', e=>{
+  if(!isDragging) return;
+  const y=(e.clientY || e.touches[0].clientY);
+  const dy=startY-y;
+  letter.scrollTop=scrollStart+dy;
+});
+letter.addEventListener('pointerup', e=>{
+  isDragging=false;
+  letter.releasePointerCapture(e.pointerId);
+});
 
-// Game
-let canvas=document.getElementById('gameCanvas');
-let ctx=canvas.getContext('2d'); let hearts=[], score=0, giftSpawned=false;
-let player={x:canvas.width/2,y:canvas.height-20,width:50,height:20};
+// Simple Game: Catch the Hearts
+const canvas=document.getElementById('gameCanvas');
+const ctx=canvas.getContext('2d');
+let hearts=[];
+let score=0;
+let player={x:canvas.width/2, y:canvas.height-20, width:50, height:20};
 
-function startGame(){
-  hearts=[]; score=0; giftSpawned=false; drawGame();
-  setInterval(()=>hearts.push({x:Math.random()*canvas.width,y:0,size:20+Math.random()*15,speed:2+Math.random()*3,wobble:Math.random()*0.1}),1000);
+function spawnHeart(){
+  hearts.push({x:Math.random()*canvas.width, y:0, size:20+Math.random()*10, speed:2+Math.random()*2});
 }
 
-function drawGame(){
+function draw(){
   ctx.clearRect(0,0,canvas.width,canvas.height);
-  ctx.fillStyle='pink'; ctx.fillRect(player.x,player.y,player.width,player.height);
+  // draw player
+  ctx.fillStyle='pink';
+  ctx.fillRect(player.x,player.y,player.width,player.height);
+  // draw hearts
+  ctx.fillStyle='red';
   hearts.forEach(h=>{
-    ctx.beginPath(); ctx.arc(h.x+Math.sin(h.y*h.wobble)*10,h.y,h.size/2,0,Math.PI*2); ctx.fillStyle='red'; ctx.fill(); h.y+=h.speed;
-    if(h.y+h.size>player.y && h.x>player.x && h.x<player.x+player.width){score++;h.y=-50;
-      if(score>=69 && !giftSpawned){spawnGift();giftSpawned=true;}
+    ctx.beginPath();
+    ctx.arc(h.x,h.y,h.size/2,0,Math.PI*2);
+    ctx.fill();
+    h.y+=h.speed;
+    // collision
+    if(h.y+h.size>player.y && h.y<h.y+player.height && h.x>player.x && h.x<player.x+player.width){
+      score++;
+      h.y=-50;
     }
   });
-  ctx.fillStyle='black'; ctx.font='
+  ctx.fillStyle='black';
+  ctx.font='18px Arial';
+  ctx.fillText('Score: '+score,10,20);
+  requestAnimationFrame(draw);
+}
 
+canvas.addEventListener('mousemove', e=>{
+  const rect=canvas.getBoundingClientRect();
+  player.x=e.clientX-rect.left-player.width/2;
+});
+canvas.addEventListener('touchmove', e=>{
+  e.preventDefault();
+  const rect=canvas.getBoundingClientRect();
+  player.x=e.touches[0].clientX-rect.left-player.width/2;
+});
+
+setInterval(spawnHeart,1000);
+draw();
+</script>
+</body>
+</html>
